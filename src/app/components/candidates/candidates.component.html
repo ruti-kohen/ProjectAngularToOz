@@ -1,0 +1,59 @@
+
+<p-toolbar styleClass="mb-4">
+  
+</p-toolbar>
+
+<div class="my-css">
+    <p-table #dt [value]="candidates" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['id','name','beginYear','lastUpdateDate','languages']" [(selection)]="selectedcandidates"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage candidates</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+      
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id"> Id<p-sortIcon field="id"></p-sortIcon></th>                
+                <th pSortableColumn="name"> Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="beginYear">BeginYear <p-sortIcon field="beginYear"></p-sortIcon></th>
+                <th pSortableColumn="lastUpdateDate">lastUpdateDate <p-sortIcon field="lastUpdateDate"></p-sortIcon></th>
+                <th pSortableColumn="languages">languages <p-sortIcon field="languages"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-candidate>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="candidate"></p-tableCheckbox>
+                </td>
+                <td>{{candidate.id}}</td>
+                <td>{{candidate.name}}</td>
+                <td>{{candidate.beginYear}}</td> 
+                <td>{{candidate.lastUpdateDate}}</td> 
+                <td>{{candidate.languages}}</td>
+                
+                <td>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{candidates ? candidates.length : 0 }} candidates.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
