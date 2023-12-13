@@ -1,6 +1,5 @@
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import { Present } from '../domain/Present';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { QueryParamsHandling } from '@angular/router';
 import { Candidate } from '../domain/Candidate';
